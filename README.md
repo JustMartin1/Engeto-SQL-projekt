@@ -36,7 +36,7 @@ kolem 4-5% rocne.
 
 2. V roce 2006 jakozto prvnim srovnatelnem obdobi byla prumerna rocni mzda 249 tisic Kc, za kterou se
 dalo koupit pres 15 tun chleba nebo 17 tisic litru mleka. Posledni srovnatelne obdobi rok 2018
-byla prumerna rocni mzda 390 tisic Kc, za co se dalo poridit pres 16 tun chleba nebo pres 
+byla prumerna rocni mzda 390 tisic Kc, za ktere se dalo poridit pres 16 tun chleba nebo pres 
 19 tisic litru mleka.
 
 3. Ve sledovanem obdobi byl nejnizsi percentualni mezirocni narust cen u cukru, u ktereho hodnota
