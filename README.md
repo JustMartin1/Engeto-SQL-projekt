@@ -1,5 +1,8 @@
 # Engeto-SQL-projekt
+Nick na discordu Martin M.#3472
+
 Úvod do projektu
+
 Na vašem analytickém oddělení nezávislé společnosti, která se zabývá životní úrovní občanů, 
 jste se dohodli, že se pokusíte odpovědět na pár definovaných výzkumných otázek, 
 které adresují dostupnost základních potravin široké veřejnosti. 
