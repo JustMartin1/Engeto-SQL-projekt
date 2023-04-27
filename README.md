@@ -8,6 +8,7 @@ jste se dohodli, že se pokusíte odpovědět na pár definovaných výzkumných
 které adresují dostupnost základních potravin široké veřejnosti. 
 Kolegové již vydefinovali základní otázky, na které se pokusí odpovědět a poskytnout 
 tuto informaci tiskovému oddělení. Toto oddělení bude výsledky prezentovat na následující 
+
 konferenci zaměřené na tuto oblast.
 
 Potřebují k tomu od vás připravit robustní datové podklady, ve kterých bude možné vidět 
@@ -20,16 +21,24 @@ Datové sady, které je možné použít pro získání vhodného datového podk
 Primární tabulky:
 
 czechia_payroll – Informace o mzdách v různých odvětvích za několikaleté období. Datová sada pochází z Portálu otevřených dat ČR.
+
 czechia_payroll_calculation – Číselník kalkulací v tabulce mezd.
+
 czechia_payroll_industry_branch – Číselník odvětví v tabulce mezd.
+
 czechia_payroll_unit – Číselník jednotek hodnot v tabulce mezd.
+
 czechia_payroll_value_type – Číselník typů hodnot v tabulce mezd.
+
 czechia_price – Informace o cenách vybraných potravin za několikaleté období. Datová sada pochází z Portálu otevřených dat ČR.
+
 czechia_price_category – Číselník kategorií potravin, které se vyskytují v našem přehledu.
+
 
 Dodatečné tabulky:
 
 countries - Všemožné informace o zemích na světě, například hlavní město, měna, národní jídlo nebo průměrná výška populace.
+
 economies - HDP, GINI, daňová zátěž, atd. pro daný stát a rok.
 
 V ramci projektu jsem pripravil pozadovane dve tabulky: t_martinminceff_primary_final, kde jsem si
