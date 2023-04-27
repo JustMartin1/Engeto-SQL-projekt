@@ -5,55 +5,55 @@
  * 
  */
 
-
-
-SELECT 
+SELECT
 	*
-FROM t_martinminceff_sql_primary_final tmspf ;
+FROM t_martinminceff_sql_primary_final pf;
 
-CREATE OR REPLACE TABLE temp_q4_payrollandprice
-SELECT 
-	tmspf .`year` ,
-	tmspf .category_code ,
-	ROUND(AVG(avg_month_payroll), 2) AS avg_payroll ,
-	ROUND(AVG(avg_year_price), 2) AS avg_price 
-FROM t_martinminceff_sql_primary_final tmspf 
-WHERE tmspf.avg_year_price IS NOT NULL 
-GROUP BY tmspf .`year` ;
 
-SELECT 
-	tqp .`year` ,
-	tqp .avg_payroll ,
-	tqp .avg_price ,
-	tqp2 .`year` AS next_year,
-	tqp2 .avg_payroll AS nextyear_payroll,
-	tqp2 .avg_price AS nextyear_price,
-	ROUND((tqp2 .avg_payroll-tqp.avg_payroll)/ tqp .avg_payroll * 100, 2) AS payroll_growth,
-	ROUND((tqp2.avg_price-tqp.avg_price)/ tqp .avg_price * 100, 2) AS price_growth
-FROM temp_q4_payrollandprice tqp 
-JOIN temp_q4_payrollandprice tqp2 
-	ON tqp.category_code = tqp2 .category_code 
-	AND tqp .`year` +1 = tqp2 .`year` 
-GROUP BY tqp .`year` ;
+CREATE OR REPLACE TABLE temp_q4payrollandprice_beta
+SELECT
+	pf.payroll_year AS `year`,
+	pf.category_code,
+	ROUND(AVG(pf.avg_month_payroll), 2) AS avg_payroll,
+	ROUND(AVG(pf.avg_year_price), 2) AS avg_price
+FROM t_martinminceff_sql_primary_final pf
+WHERE pf.avg_year_price IS NOT NULL
+GROUP BY pf.payroll_year;
+
+
+SELECT
+	tqb.`year`,
+	tqb.avg_payroll,
+	tqb.avg_price,
+	tqb2.`year` AS next_year,
+	tqb2.avg_payroll AS nextyear_payroll,
+	tqb2.avg_price AS nextyear_price,
+	ROUND((tqb2.avg_payroll - tqb.avg_payroll) / tqb.avg_payroll * 100, 2) AS payroll_growth,
+	ROUND((tqb2.avg_price - tqb.avg_price) / tqb.avg_price * 100, 2) AS price_growth
+FROM temp_q4payrollandprice_beta tqb
+JOIN temp_q4payrollandprice_beta tqb2
+	ON tqb.category_code = tqb2.category_code
+	AND tqb.`year`+1 = tqb2.`year`
+GROUP BY tqb.`year`;
 
 
 WITH question4final AS
-	(
-		SELECT 
-			tqp .`year` ,
-			tqp .avg_payroll ,
-			tqp .avg_price ,
-			tqp2 .`year` AS next_year,
-			tqp2 .avg_payroll AS nextyear_payroll,
-			tqp2 .avg_price AS nextyear_price,
-			ROUND((tqp2 .avg_payroll-tqp.avg_payroll)/ tqp .avg_payroll * 100, 2) AS payroll_growth,
-			ROUND((tqp2.avg_price-tqp.avg_price)/ tqp .avg_price * 100, 2) AS price_growth
-		FROM temp_q4_payrollandprice tqp 
-		JOIN temp_q4_payrollandprice tqp2 
-			ON tqp.category_code = tqp2 .category_code 
-			AND tqp .`year` +1 = tqp2 .`year` 
-		GROUP BY tqp .`year` 
-	)
+(
+SELECT
+	tqb.`year`,
+	tqb.avg_payroll,
+	tqb.avg_price,
+	tqb2.`year` AS next_year,
+	tqb2.avg_payroll AS nextyear_payroll,
+	tqb2.avg_price AS nextyear_price,
+	ROUND((tqb2.avg_payroll - tqb.avg_payroll) / tqb.avg_payroll * 100, 2) AS payroll_growth,
+	ROUND((tqb2.avg_price - tqb.avg_price) / tqb.avg_price * 100, 2) AS price_growth
+FROM temp_q4payrollandprice_beta tqb
+JOIN temp_q4payrollandprice_beta tqb2
+	ON tqb.category_code = tqb2.category_code
+	AND tqb.`year`+1 = tqb2.`year`
+GROUP BY tqb.`year`
+)
 SELECT
 	`year`,
 	payroll_growth,
@@ -62,30 +62,5 @@ SELECT
 		CASE
 			WHEN price_growth - payroll_growth <= -10 THEN 1
 			ELSE 0
-		END AS higher_than_10percent_yes_no		
+		END AS higher_than_10percent_yes_no
 FROM question4final;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
